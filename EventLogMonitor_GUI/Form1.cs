@@ -78,7 +78,7 @@ namespace EventLogMonitor_GUI
                 Debug.WriteLine(HookedLog);
             }
             Invoke((MethodInvoker)delegate {
-                mainForm.ActiveForm.Icon = new Icon(@"C:\Users\xAbdulRhman\Downloads\GreenDot.ico");
+                mainForm.ActiveForm.Icon = EventLogMonitor_GUI.Properties.Resources.GreenDot;
                 DisplayHookedLogsBtn.Enabled = true;
             });
             signal.WaitOne();
