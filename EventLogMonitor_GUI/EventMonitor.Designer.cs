@@ -30,16 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.table = new System.Windows.Forms.DataGridView();
-            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EventSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EventMsg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.monitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DisplayHookedLogsBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventMsg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -60,30 +59,6 @@
             this.table.Name = "table";
             this.table.Size = new System.Drawing.Size(797, 307);
             this.table.TabIndex = 0;
-            // 
-            // Time
-            // 
-            this.Time.HeaderText = "Time";
-            this.Time.Name = "Time";
-            this.Time.Width = 54;
-            // 
-            // EventSource
-            // 
-            this.EventSource.HeaderText = "Event Source";
-            this.EventSource.Name = "EventSource";
-            this.EventSource.Width = 88;
-            // 
-            // EventID
-            // 
-            this.EventID.HeaderText = "EventID";
-            this.EventID.Name = "EventID";
-            this.EventID.Width = 71;
-            // 
-            // EventMsg
-            // 
-            this.EventMsg.HeaderText = "Event Message";
-            this.EventMsg.Name = "EventMsg";
-            this.EventMsg.Width = 96;
             // 
             // menuStrip1
             // 
@@ -107,8 +82,7 @@
             // exportLogsToolStripMenuItem
             // 
             this.exportLogsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportXMLToolStripMenuItem,
-            this.exportJSONToolStripMenuItem});
+            this.exportXMLToolStripMenuItem});
             this.exportLogsToolStripMenuItem.Name = "exportLogsToolStripMenuItem";
             this.exportLogsToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.exportLogsToolStripMenuItem.Text = "Export Logs";
@@ -116,16 +90,9 @@
             // exportXMLToolStripMenuItem
             // 
             this.exportXMLToolStripMenuItem.Name = "exportXMLToolStripMenuItem";
-            this.exportXMLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportXMLToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.exportXMLToolStripMenuItem.Text = "Export XML";
-            this.exportXMLToolStripMenuItem.Click += new System.EventHandler(this.exportXMLToolStripMenuItem_Click);
-            // 
-            // exportJSONToolStripMenuItem
-            // 
-            this.exportJSONToolStripMenuItem.Name = "exportJSONToolStripMenuItem";
-            this.exportJSONToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exportJSONToolStripMenuItem.Text = "Export JSON";
-            this.exportJSONToolStripMenuItem.Click += new System.EventHandler(this.exportJSONToolStripMenuItem_Click);
+            this.exportXMLToolStripMenuItem.Click += new System.EventHandler(this.exportXML);
             // 
             // DisplayHookedLogsBtn
             // 
@@ -133,7 +100,31 @@
             this.DisplayHookedLogsBtn.Name = "DisplayHookedLogsBtn";
             this.DisplayHookedLogsBtn.Size = new System.Drawing.Size(130, 20);
             this.DisplayHookedLogsBtn.Text = "Display Hooked Logs";
-            this.DisplayHookedLogsBtn.Click += new System.EventHandler(this.displayHookedLogsToolStripMenuItem_Click);
+            this.DisplayHookedLogsBtn.Click += new System.EventHandler(this.displayHookedLogs);
+            // 
+            // Time
+            // 
+            this.Time.HeaderText = "Time";
+            this.Time.Name = "Time";
+            this.Time.Width = 54;
+            // 
+            // EventSource
+            // 
+            this.EventSource.HeaderText = "Event Source";
+            this.EventSource.Name = "EventSource";
+            this.EventSource.Width = 96;
+            // 
+            // EventID
+            // 
+            this.EventID.HeaderText = "EventID";
+            this.EventID.Name = "EventID";
+            this.EventID.Width = 71;
+            // 
+            // EventMsg
+            // 
+            this.EventMsg.HeaderText = "Event Details";
+            this.EventMsg.Name = "EventMsg";
+            this.EventMsg.Width = 95;
             // 
             // mainForm
             // 
@@ -161,13 +152,12 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem monitorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportLogsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportXMLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DisplayHookedLogsBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventID;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventMsg;
-        private System.Windows.Forms.ToolStripMenuItem exportXMLToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportJSONToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem DisplayHookedLogsBtn;
     }
 }
 
