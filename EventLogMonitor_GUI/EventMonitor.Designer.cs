@@ -28,17 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.table = new System.Windows.Forms.DataGridView();
+            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventMsg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.monitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DisplayHookedLogsBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EventSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EventMsg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +58,30 @@
             this.table.Name = "table";
             this.table.Size = new System.Drawing.Size(797, 307);
             this.table.TabIndex = 0;
+            // 
+            // Time
+            // 
+            this.Time.HeaderText = "Time";
+            this.Time.Name = "Time";
+            this.Time.Width = 54;
+            // 
+            // EventSource
+            // 
+            this.EventSource.HeaderText = "Event Source";
+            this.EventSource.Name = "EventSource";
+            this.EventSource.Width = 96;
+            // 
+            // EventID
+            // 
+            this.EventID.HeaderText = "EventID";
+            this.EventID.Name = "EventID";
+            this.EventID.Width = 71;
+            // 
+            // EventMsg
+            // 
+            this.EventMsg.HeaderText = "Event Details";
+            this.EventMsg.Name = "EventMsg";
+            this.EventMsg.Width = 95;
             // 
             // menuStrip1
             // 
@@ -102,30 +125,6 @@
             this.DisplayHookedLogsBtn.Text = "Display Hooked Logs";
             this.DisplayHookedLogsBtn.Click += new System.EventHandler(this.displayHookedLogs);
             // 
-            // Time
-            // 
-            this.Time.HeaderText = "Time";
-            this.Time.Name = "Time";
-            this.Time.Width = 54;
-            // 
-            // EventSource
-            // 
-            this.EventSource.HeaderText = "Event Source";
-            this.EventSource.Name = "EventSource";
-            this.EventSource.Width = 96;
-            // 
-            // EventID
-            // 
-            this.EventID.HeaderText = "EventID";
-            this.EventID.Name = "EventID";
-            this.EventID.Width = 71;
-            // 
-            // EventMsg
-            // 
-            this.EventMsg.HeaderText = "Event Details";
-            this.EventMsg.Name = "EventMsg";
-            this.EventMsg.Width = 95;
-            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -133,7 +132,6 @@
             this.ClientSize = new System.Drawing.Size(797, 331);
             this.Controls.Add(this.table);
             this.Controls.Add(this.menuStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "mainForm";
             this.Text = "EventLogMonitor";
