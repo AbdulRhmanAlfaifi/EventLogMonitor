@@ -40,6 +40,7 @@ namespace EventLogMonitor_GUI
             }
             );
             LogHookManager.Start();
+            LogHookManager.IsBackground = true;
             LogHookManager.Name = "LogHookManager";
         }
 
@@ -48,7 +49,20 @@ namespace EventLogMonitor_GUI
             // If the user double clicked on a cell on the "Event Details" colmun, Then display the details for that event.
             if (e.ColumnIndex == 3)
             {
-                MessageBox.Show(table.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), "Data", MessageBoxButtons.OK, MessageBoxIcon.None);
+                //MessageBox.Show(table.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), "Data", MessageBoxButtons.OK, MessageBoxIcon.None);
+                // The details form. This form will be used later to display the event details.
+                ShowDetails sd = new ShowDetails();
+                foreach (Control c in sd.Controls)
+                {
+                    if (c.Name == "textBox1")
+                    {
+                        TextBox tb = (TextBox)c;
+                        tb.Text = table.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                        tb.SelectionStart = 0;
+                        tb.SelectionLength = 0;
+                        sd.Show();
+                    }
+                }
             }
         }
 
