@@ -11,10 +11,14 @@ namespace EventLogMonitor_GUI
 {
     public partial class mainForm : Form
     {
+        List<String> AvailableLogs = GetAvailableLogs();
+
         // List of strings that contents all successful hooked logs
         List<String> HookedLogs = new List<string>();
         // List that contains all the events captured. This list is used to export the events.
         List<EventRecord> Events = new List<EventRecord>();
+
+        List<EventLogWatcher> HookedLogsWatchers = new List<EventLogWatcher>();
 
         public mainForm()
         {
@@ -24,24 +28,8 @@ namespace EventLogMonitor_GUI
         private void Form1_Load(object sender, EventArgs e)
         {
             table.CellMouseDoubleClick += ShowLogDetails;
-            // Gell all the event logs that can be hooked and add there names to "logName" list.
-            List<String> logNames = new List<String>();
-            foreach (EventLog myEvtLog in EventLog.GetEventLogs())
-            {
-                logNames.Add(myEvtLog.Log);
-            }
-            // Add the setup event log to the hooked list.
-            logNames.Add("setup");
-
-            // Make a new thread for the log hooking and event capturing.
-            Thread LogHookManager = new Thread(delegate ()
-            {
-                StartEventLogHook(logNames);
-            }
-            );
-            LogHookManager.Start();
-            LogHookManager.IsBackground = true;
-            LogHookManager.Name = "LogHookManager";
+            // log hooking and event capturing function.
+            StartEventLogHook(AvailableLogs);
         }
 
         private void ShowLogDetails(object sender, DataGridViewCellMouseEventArgs e)
@@ -69,7 +57,6 @@ namespace EventLogMonitor_GUI
         // This function recives a list of event logs to be hooked and add "EventRecordWritten" event for each one.
         private void StartEventLogHook(List<String> logNames)
         {
-            AutoResetEvent signal = new AutoResetEvent(false);
             foreach (String logName in logNames)
             {
                 try
@@ -80,6 +67,7 @@ namespace EventLogMonitor_GUI
                     ew.Enabled = true;
                     Debug.WriteLine("Registred to : " + logName);
                     HookedLogs.Add(logName);
+                    HookedLogsWatchers.Add(ew);
                 }
                 catch (Exception e)
                 {
@@ -93,11 +81,7 @@ namespace EventLogMonitor_GUI
             }
 
             // enable the "Display Hooked Logs" button when finished hooking.
-            Invoke((MethodInvoker)delegate {
-                DisplayHookedLogsBtn.Enabled = true;
-            });
-            // Do not exit from the thread.
-            signal.WaitOne();
+            DisplayHookedLogsBtn.Enabled = true;
 
         }
 
@@ -177,6 +161,46 @@ namespace EventLogMonitor_GUI
             }
 
             MessageBox.Show(hookedLogs,"Hooked Logs",MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
+
+        private static List<string> GetAvailableLogs()
+        {
+            // Gell all the event logs that can be hooked and add there names to "logName" list.
+            List<String> logNames = new List<String>();
+            foreach (EventLog myEvtLog in EventLog.GetEventLogs())
+            {
+                logNames.Add(myEvtLog.Log);
+            }
+            // Add the setup event log to the hooked list.
+            logNames.Add("Setup");
+
+            return logNames;
+        }
+
+        public void StartStopMonitoring()
+        {
+            foreach (EventLogWatcher ew in HookedLogsWatchers)
+            {
+                ew.Enabled = !ew.Enabled;
+            }
+
+            if (StartorStopMonitoringBtn.BackColor == System.Drawing.Color.Red)
+            {
+                StartorStopMonitoringBtn.BackColor = System.Drawing.Color.Green;
+                StartorStopMonitoringBtn.Text = "Monitoring";
+                StartorStopMonitoringBtn.Font = new System.Drawing.Font(StartorStopMonitoringBtn.Font.FontFamily.Name, StartorStopMonitoringBtn.Font.Size,System.Drawing.FontStyle.Bold);
+            }
+            else
+            {
+                StartorStopMonitoringBtn.BackColor = System.Drawing.Color.Red;
+                StartorStopMonitoringBtn.Text = "Not Monitoring";
+                StartorStopMonitoringBtn.Font = new System.Drawing.Font(StartorStopMonitoringBtn.Font.FontFamily.Name, StartorStopMonitoringBtn.Font.Size, System.Drawing.FontStyle.Italic);
+            }
+        }
+
+        private void StartMonitoringBtn_Click(object sender, EventArgs e)
+        {
+            StartStopMonitoring();
         }
     }
 }

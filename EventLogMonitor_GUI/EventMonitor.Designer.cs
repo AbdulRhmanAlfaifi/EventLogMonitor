@@ -38,6 +38,7 @@
             this.exportLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DisplayHookedLogsBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.StartorStopMonitoringBtn = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,13 +64,13 @@
             // 
             this.Time.HeaderText = "Time";
             this.Time.Name = "Time";
-            this.Time.Width = 54;
+            this.Time.Width = 55;
             // 
             // EventSource
             // 
             this.EventSource.HeaderText = "Event Source";
             this.EventSource.Name = "EventSource";
-            this.EventSource.Width = 96;
+            this.EventSource.Width = 97;
             // 
             // EventID
             // 
@@ -88,7 +89,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.monitorToolStripMenuItem,
             this.exportLogsToolStripMenuItem,
-            this.DisplayHookedLogsBtn});
+            this.DisplayHookedLogsBtn,
+            this.StartorStopMonitoringBtn});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(797, 24);
@@ -121,9 +123,19 @@
             // 
             this.DisplayHookedLogsBtn.Enabled = false;
             this.DisplayHookedLogsBtn.Name = "DisplayHookedLogsBtn";
-            this.DisplayHookedLogsBtn.Size = new System.Drawing.Size(130, 20);
-            this.DisplayHookedLogsBtn.Text = "Display Hooked Logs";
+            this.DisplayHookedLogsBtn.Size = new System.Drawing.Size(144, 20);
+            this.DisplayHookedLogsBtn.Text = "Display Monitored Logs";
             this.DisplayHookedLogsBtn.Click += new System.EventHandler(this.displayHookedLogs);
+            // 
+            // StartorStopMonitoringBtn
+            // 
+            this.StartorStopMonitoringBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.StartorStopMonitoringBtn.BackColor = System.Drawing.Color.Green;
+            this.StartorStopMonitoringBtn.ForeColor = System.Drawing.Color.White;
+            this.StartorStopMonitoringBtn.Name = "StartorStopMonitoringBtn";
+            this.StartorStopMonitoringBtn.Size = new System.Drawing.Size(79, 20);
+            this.StartorStopMonitoringBtn.Text = "Monitoring";
+            this.StartorStopMonitoringBtn.Click += new System.EventHandler(this.StartMonitoringBtn_Click);
             // 
             // mainForm
             // 
@@ -156,6 +168,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EventSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventID;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventMsg;
+        private System.Windows.Forms.ToolStripMenuItem StartorStopMonitoringBtn;
     }
 }
 

@@ -66,7 +66,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -113,7 +113,6 @@
     <EmbeddedResource Include="ShowDetails.resx">
       <DependentUpon>ShowDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="EventLogMonitor_GUI_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
