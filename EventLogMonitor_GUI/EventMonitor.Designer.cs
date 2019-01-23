@@ -29,16 +29,17 @@
         private void InitializeComponent()
         {
             this.table = new System.Windows.Forms.DataGridView();
-            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EventSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EventMsg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.monitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DisplayHookedLogsBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.StartorStopMonitoringBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LogName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventMsg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +51,7 @@
             this.table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Time,
+            this.LogName,
             this.EventSource,
             this.EventID,
             this.EventMsg});
@@ -59,30 +61,6 @@
             this.table.Name = "table";
             this.table.Size = new System.Drawing.Size(797, 307);
             this.table.TabIndex = 0;
-            // 
-            // Time
-            // 
-            this.Time.HeaderText = "Time";
-            this.Time.Name = "Time";
-            this.Time.Width = 55;
-            // 
-            // EventSource
-            // 
-            this.EventSource.HeaderText = "Event Source";
-            this.EventSource.Name = "EventSource";
-            this.EventSource.Width = 97;
-            // 
-            // EventID
-            // 
-            this.EventID.HeaderText = "EventID";
-            this.EventID.Name = "EventID";
-            this.EventID.Width = 71;
-            // 
-            // EventMsg
-            // 
-            this.EventMsg.HeaderText = "Event Details";
-            this.EventMsg.Name = "EventMsg";
-            this.EventMsg.Width = 95;
             // 
             // menuStrip1
             // 
@@ -137,6 +115,36 @@
             this.StartorStopMonitoringBtn.Text = "Monitoring";
             this.StartorStopMonitoringBtn.Click += new System.EventHandler(this.StartMonitoringBtn_Click);
             // 
+            // Time
+            // 
+            this.Time.HeaderText = "Time";
+            this.Time.Name = "Time";
+            this.Time.Width = 55;
+            // 
+            // LogName
+            // 
+            this.LogName.HeaderText = "Log Name";
+            this.LogName.Name = "LogName";
+            this.LogName.Width = 81;
+            // 
+            // EventSource
+            // 
+            this.EventSource.HeaderText = "Event Source";
+            this.EventSource.Name = "EventSource";
+            this.EventSource.Width = 97;
+            // 
+            // EventID
+            // 
+            this.EventID.HeaderText = "EventID";
+            this.EventID.Name = "EventID";
+            this.EventID.Width = 71;
+            // 
+            // EventMsg
+            // 
+            this.EventMsg.HeaderText = "Event Details";
+            this.EventMsg.Name = "EventMsg";
+            this.EventMsg.Width = 95;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,7 +155,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "mainForm";
             this.Text = "EventLogMonitor";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainFormLoaded);
             ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -164,11 +172,12 @@
         private System.Windows.Forms.ToolStripMenuItem exportLogsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportXMLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DisplayHookedLogsBtn;
+        private System.Windows.Forms.ToolStripMenuItem StartorStopMonitoringBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LogName;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventID;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventMsg;
-        private System.Windows.Forms.ToolStripMenuItem StartorStopMonitoringBtn;
     }
 }
 

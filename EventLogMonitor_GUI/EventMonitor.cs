@@ -11,13 +11,13 @@ namespace EventLogMonitor_GUI
 {
     public partial class mainForm : Form
     {
+        // Get all the available logs (That can be hooked).
         List<String> AvailableLogs = GetAvailableLogs();
-
         // List of strings that contents all successful hooked logs
         List<String> HookedLogs = new List<string>();
         // List that contains all the events captured. This list is used to export the events.
         List<EventRecord> Events = new List<EventRecord>();
-
+        // EventLogWatcher objects for all the hooked logs. THis list will be used to stop or start the monitoring process.
         List<EventLogWatcher> HookedLogsWatchers = new List<EventLogWatcher>();
 
         public mainForm()
@@ -25,7 +25,7 @@ namespace EventLogMonitor_GUI
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainFormLoaded(object sender, EventArgs e)
         {
             table.CellMouseDoubleClick += ShowLogDetails;
             // log hooking and event capturing function.
@@ -37,18 +37,24 @@ namespace EventLogMonitor_GUI
             // If the user double clicked on a cell on the "Event Details" colmun, Then display the details for that event.
             if (e.ColumnIndex == 3)
             {
-                //MessageBox.Show(table.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), "Data", MessageBoxButtons.OK, MessageBoxIcon.None);
                 // The details form. This form will be used later to display the event details.
                 ShowDetails sd = new ShowDetails();
                 foreach (Control c in sd.Controls)
                 {
                     if (c.Name == "textBox1")
                     {
-                        TextBox tb = (TextBox)c;
-                        tb.Text = table.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                        tb.SelectionStart = 0;
-                        tb.SelectionLength = 0;
-                        sd.Show();
+                        // Try retriving the details of the log. If there are no details then do not do any thing.
+                        try
+                        {
+                            TextBox tb = (TextBox)c;
+                            tb.Text = table.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                            tb.SelectionStart = 0;
+                            tb.SelectionLength = 0;
+                            sd.Show();
+                        }
+                        catch (Exception)
+                        {
+                        }
                     }
                 }
             }
@@ -93,14 +99,15 @@ namespace EventLogMonitor_GUI
             DataGridViewRow row = (DataGridViewRow)table.Rows[0].Clone();
 
             row.Cells[0].Value = entry.TimeCreated;
-            row.Cells[1].Value = entry.ProviderName;
-            row.Cells[2].Value = entry.Id;
+            row.Cells[1].Value = entry.LogName;
+            row.Cells[2].Value = entry.ProviderName;
 
             // The following code beautify the XML.
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(entry.ToXml());
             StringWriter sw = new StringWriter();
             xmlDoc.Save(sw);
+
             row.Cells[3].Value = sw.ToString();
 
             // Add the new row with the event entry data to the table.
