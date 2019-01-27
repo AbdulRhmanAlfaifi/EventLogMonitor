@@ -35,7 +35,7 @@ namespace EventLogMonitor_GUI
         private void ShowLogDetails(object sender, DataGridViewCellMouseEventArgs e)
         {
             // If the user double clicked on a cell on the "Event Details" colmun, Then display the details for that event.
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 4)
             {
                 // The details form. This form will be used later to display the event details.
                 ShowDetails sd = new ShowDetails();
@@ -101,14 +101,15 @@ namespace EventLogMonitor_GUI
             row.Cells[0].Value = entry.TimeCreated;
             row.Cells[1].Value = entry.LogName;
             row.Cells[2].Value = entry.ProviderName;
-
+            row.Cells[3].Value = entry.Id;
             // The following code beautify the XML.
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(entry.ToXml());
             StringWriter sw = new StringWriter();
             xmlDoc.Save(sw);
 
-            row.Cells[3].Value = sw.ToString();
+            row.Cells[4].Value = sw.ToString();
+            row.Cells[4].ToolTipText = sw.ToString();
 
             // Add the new row with the event entry data to the table.
             table.Invoke((MethodInvoker)delegate {
